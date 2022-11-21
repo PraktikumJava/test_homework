@@ -19,7 +19,7 @@ public class Main {
                 int daynumber = scanner.nextInt();
                 System.out.println("Укажите количество шагов пройденных за сегодня");
                 int stepssum = scanner.nextInt();
-                stepTracker.getDaySteps(monthnumber, daynumber, stepssum);
+                stepTracker.setStepsByDay(monthnumber, daynumber, stepssum);
             } else if (userInput == 2) {
                 System.out.println("Введите номер месяца для получения статистики");
                 stepTracker.printMenuUser();

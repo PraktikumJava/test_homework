@@ -33,12 +33,17 @@ public class StepTracker {
         }
     }
 
+    public void printMenuUser() {
+        System.out.println("0 -  Январь \n1 -  Февраль \n2 -  Март \n3 -  Апрель \n4 -  Май \n5 -  Июнь " +
+                "\n6 -  Июль \n7 -  Август \n8 -  Сентябрь \n9 -  Октябрь \n10 - Ноябрь \n11 - Декабрь");
+    }
+
     public void changeDaySteps(int planStep) {
         this.planStep = planStep;
         System.out.println("Ваша новая цель за день составила " + this.planStep + " шагов");
     }
 
-    public void getDaySteps(int idMonth, int idDay, int steps) {
+    public void setStepsByDay(int idMonth, int idDay, int steps) {
         this.idMonth = idMonth;
         if (idMonth < 0 && idMonth >= 12) {
             System.out.println("Вы ввели некорректное число! Попробуйте еще раз!");
@@ -50,30 +55,23 @@ public class StepTracker {
             return;
         }
 
-        while (true) {
-            this.steps = steps;
-            if (steps < 0) {
-                System.out.println("Вы ввели некорректное число! Попробуйте еще раз!");
-                return;
-            } else {
-                monthToData[idMonth].days[idDay] = steps;
-                System.out.println("Пройденное вами количество шагов составило " + this.steps + " за " + this.idDay + " день " + "в " + this.idMonth + " месяце");
-                break;
-            }
-
+        this.steps = steps;
+        if (steps < 0) {
+            System.out.println("Вы ввели некорректное число! Попробуйте еще раз!");
+        } else {
+            monthToData[idMonth].days[idDay] = steps;
+            System.out.println("Пройденное вами количество шагов составило " + this.steps + " за " + this.idDay + " день " + "в " + this.idMonth + " месяце");
         }
     }
 
-    public void printMenuUser() {
-        System.out.println("0 -  Январь \n1 -  Февраль \n2 -  Март \n3 -  Апрель \n4 -  Май \n5 -  Июнь " +
-                "\n6 -  Июль \n7 -  Август \n8 -  Сентябрь \n9 -  Октябрь \n10 - Ноябрь \n11 - Декабрь");
+    public int getStepsByDay() {
+        return monthToData[idMonth].days[idDay];
     }
+
 
     public void getStatistic(int month) {
 
-        for (int i = 0; i < monthToData[idMonth].days.length; i++) {
-            System.out.println("Количество пройденных шагов за " + (i + 1) + "  день составляет: " + monthToData[idMonth].days[i]);
-        }
+        System.out.println("Количество пройденных шагов за " + (idDay) + "  день составляет: " + getStepsByDay());
         System.out.println("Количество пройденных шагов за месяц составляет " + getTotalStepsbyMonth(month));
         System.out.println("Максимально пройденное количество шагов в этом месяце составляет " + getMaxStep());
         System.out.println("Среднее количество пройденных шагов составляет " + getAvgSteps(month));
